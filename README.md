@@ -166,9 +166,7 @@ Run:
 
 ---
 
-## ✅ Flowcharts
-
-### Encryption
+## ✅ Encryption Flowchart
 
 ```
 [Start]
@@ -198,35 +196,36 @@ Run:
 [End]
 ```
 
-### Decryption
-
-Same as encryption, except subtract `s` instead of adding.
-
 ---
 
-## ✅ Mermaid Encryption Flowchart
+## ✅ Decryption Flowchart
 
-```mermaid
-flowchart TD
-    A[Start] --> B[Count letter frequencies]
-    B --> C[Find max frequency m]
-    C --> D[Compute s = m mod k]
-    D --> E{Is s == 0?}
-    E -- No --> F[Keep s]
-    E -- Yes --> G[Set m = m - 1]
-    G --> H[Recompute s = m mod k]
-    F --> I[For each character]
-    H --> I
-    I --> J{Is letter?}
-    J -- No --> K[Append unchanged]
-    J -- Yes --> L[Convert char to p]
-    L --> M[Compute (p + s) mod 26]
-    M --> N[Convert back to char]
-    N --> O[Append to output]
-    K --> P{More letters?}
-    O --> P
-    P -- Yes --> I
-    P -- No --> Q[End]
+```
+[Start]
+   ↓
+[Count letter frequencies]
+   ↓
+[Find max frequency m]
+   ↓
+[Compute s = m mod k]
+   ↓
+[If s == 0 → m = m - 1, recompute s]
+   ↓
+[For each letter]
+ ┌───────────────┐
+ │ Is letter?    │
+ └───────┬───────┘
+      Yes        No
+       ↓          ↓
+[Convert p]   [Keep char]
+       ↓
+[(p - s + 26) mod 26]
+       ↓
+[Convert back]
+       ↓
+[Append to output]
+   ↓
+[End]
 ```
 
 ---
